@@ -1,0 +1,70 @@
+export const content = {
+  hero: {
+    kicker: 'Artesanales. Inesperados. Muy tuyos.',
+    titleLines: ['HELADOS', 'FUERA DE', 'ESTE MUNDO'],
+    descriptionLines: [
+      'No todos los antojos son iguales.',
+      'El tuyo tiene su propia personalidad.',
+    ],
+    primaryCta: 'Encuentra tu sabor',
+    visitCta: 'Visítanos',
+    imageAlt: 'Composición conceptual de un cono con helados amarillo, verde y rosa',
+    stickerLines: ['Mucho sabor.', 'Cero aburrimiento.'],
+    caption: 'Imagen conceptual para esta propuesta',
+    bottom: 'Hecho para antojos con imaginación.',
+    discover: 'Desliza y descubre',
+  },
+  seasonal: {
+    ribbon: [
+      'Un sabor, una personalidad',
+      '✳',
+      'Encuentra tu Halebrije',
+      '✳',
+      'Helados con imaginación',
+      '✳',
+      'Un sabor, una personalidad',
+    ],
+    label: 'Edición de temporada',
+    titleLines: ['Una nueva', 'criatura', 'apareció'],
+    subtitleLines: ['Paletas que despiertan', 'la imaginación.'],
+    copy: 'El universo Halebrije cambia de forma. Descubre las creaciones que aparecen en Instagram y pregunta por la disponibilidad de hoy.',
+    cta: 'Explorar la temporada',
+    noticeLines: [
+      'Selección del contenido oficial de la marca.',
+      'Disponibilidad y sabores por confirmar.',
+    ],
+    imageAlt: 'Publicación oficial de Halebrije con paletas de criaturas de temporada',
+    caption: 'Desde el Instagram de Halebrije',
+  },
+  craft: {
+    label: 'El lado artesanal',
+    titleLines: ['El sabor también', 'está en los detalles.'],
+    intro:
+      'Ingredientes, proceso, textura y ese primer bocado. Un espacio para descubrir cómo se construye cada antojo.',
+    imageAlt: 'Detalle conceptual de la textura de tres helados artesanales',
+    caption: 'Exploración visual · imagen conceptual',
+    steps: [
+      ['01', 'Ingredientes', 'El punto de partida de cada personalidad.'],
+      ['02', 'Proceso', 'Aquí conocerás el trabajo detrás de Halebrije.'],
+      ['03', 'Textura', 'El encuentro entre forma, color y sensación.'],
+      ['04', 'Tu helado', 'El final de la historia. El inicio de tu antojo.'],
+    ],
+    notice: 'La información de ingredientes y elaboración se completará con la marca.',
+  },
+  story: {
+    label: 'Nuestra historia',
+    titleLines: ['Un nombre.', 'Todo un universo.'],
+    copy: 'Halebrije. Helados artesanales, color y una invitación a dejar que tu antojo tenga personalidad.',
+    cta: 'Conoce el universo de la marca',
+    chapters: ['El origen', 'Las personas', 'La inspiración'],
+    chapterCopy:
+      'Este capítulo se completará con la historia y fotografías compartidas por Halebrije.',
+    notice: 'Historia, fundadores y filosofía pendientes de entrevista con la marca.',
+  },
+  social: {
+    label: 'Hay un mundo por descubrir',
+    title: 'El mundo Halebrije.',
+    caption: 'Paletas, antojos y criaturas que merecen una foto.',
+    cta: 'Seguir a Halebrije',
+  },
+} as const;

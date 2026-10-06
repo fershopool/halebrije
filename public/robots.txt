@@ -1,0 +1,3 @@
+# Propuesta de presentación. Habilitar indexación al confirmar contenido y dominio.
+User-agent: *
+Disallow: /
