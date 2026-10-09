@@ -1,9 +1,14 @@
 import { sitePath } from '../utilities/paths';
 import { Icon } from './Icon';
 import { brand, navigation } from '../config/brand';
+import { Mandala, PatternStrip } from './Ornaments';
 export function Footer({ onOrder }: { onOrder: () => void }) {
   return (
     <footer className="site-footer">
+      <PatternStrip kind="diamonds" className="footer-strip" />
+      <div className="footer-mandala" aria-hidden="true">
+        <Mandala className="spin-slow" />
+      </div>
       <div className="footer-top section-shell">
         <div>
           <span className="small-label">Tu antojo tiene personalidad</span>

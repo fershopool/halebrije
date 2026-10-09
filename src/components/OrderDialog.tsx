@@ -2,6 +2,7 @@ import { sitePath } from '../utilities/paths';
 import { useRef } from 'react';
 import { brand } from '../config/brand';
 import { Icon } from './Icon';
+import { Flower, PatternStrip } from './Ornaments';
 export function OrderDialog({
   dialogRef,
 }: {
@@ -27,6 +28,7 @@ export function OrderDialog({
       }}
     >
       <div className="order-dialog-inner" ref={content}>
+        <PatternStrip kind="zigzag" className="order-strip" />
         <button
           className="dialog-close"
           aria-label="Cerrar opciones de pedido"
@@ -59,6 +61,7 @@ export function OrderDialog({
         <p className="fine-print">
           El canal de WhatsApp estará disponible cuando Halebrije confirme su número.
         </p>
+        <Flower className="order-orn" />
       </div>
     </dialog>
   );

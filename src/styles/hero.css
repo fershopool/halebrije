@@ -1,0 +1,374 @@
+/* hero: estilos propios de esta zona; cargado después de alebrije.css.
+   Evita redefinir top/left/width de .hero-orbit, .hero-image y .hero-sticker: sections.css los ajusta por media query. */
+
+/* ---------- HERO ---------- */
+.hero {
+  isolation: isolate;
+  overflow-x: clip;
+  padding-bottom: clamp(64px, 7vw, 104px);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline: calc(50% - 50vw);
+  z-index: -3;
+  background:
+    radial-gradient(circle, #e6007e26 2px, transparent 2.6px) 0 0 / 28px 28px,
+    var(--a-cream);
+}
+.hero > .papel-picado {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  border-top: 0;
+}
+.hero h1 {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  font-size: clamp(44px, 6.2vw, 100px);
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.hero h1 > span:nth-last-of-type(2) {
+  display: inline;
+  background: linear-gradient(90deg, var(--a-magenta), var(--a-violet), var(--a-cobalt));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(4px 4px 0 var(--a-yellow));
+}
+.hero-period {
+  color: var(--a-magenta);
+}
+.hero-kicker {
+  color: var(--a-violet);
+}
+.hero-kicker .tiny-spark {
+  color: var(--a-magenta);
+}
+
+/* Órbita: mandala giratorio con rayos y anillos concéntricos detrás del cono */
+.hero-orbit {
+  background: none;
+  border-radius: 50%;
+}
+.hero-orbit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--a-magenta) 0 9deg, var(--a-yellow) 0 18deg);
+  -webkit-mask: radial-gradient(closest-side, #000 62%, transparent 100%);
+  mask: radial-gradient(closest-side, #000 62%, transparent 100%);
+  opacity: 0.55;
+  animation: spin 70s linear infinite;
+}
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  pointer-events: none;
+}
+.hero-ring.ring-1 {
+  inset: -3%;
+  border-width: 12px;
+  border-color: var(--a-turquoise);
+}
+.hero-ring.ring-2 {
+  inset: -7%;
+  border-width: 10px;
+  border-color: var(--a-orange);
+}
+.hero-ring.ring-3 {
+  inset: -11%;
+  border-width: 8px;
+  border-color: var(--a-lime);
+  border-style: dashed;
+}
+.hero-mandala {
+  position: absolute;
+  inset: 10%;
+  width: 80%;
+  height: 80%;
+  filter: drop-shadow(0 10px 14px #1b0f3a24);
+}
+
+/* Parallax CSS puro: solo con scroll-driven animations; usa la propiedad `translate` para no pelear con transform */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-image-wrap {
+      animation: hero-parallax linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes hero-parallax {
+  from {
+    translate: 0 36px;
+  }
+  to {
+    translate: 0 -36px;
+  }
+}
+
+/* Ornamentos flotantes alrededor del cono */
+.hero-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-float {
+  position: absolute;
+  width: clamp(44px, 5.4vw, 84px);
+  height: auto;
+  filter: drop-shadow(0 6px 8px #1b0f3a22);
+  animation: floaty 6s ease-in-out infinite;
+}
+.hero-float.hf-1 {
+  top: 4%;
+  left: 6%;
+  --r: -12deg;
+  animation-delay: -1s;
+}
+.hero-float.hf-2 {
+  top: 40%;
+  right: 2%;
+  width: clamp(34px, 3.8vw, 58px);
+  --r: 16deg;
+  animation-delay: -3s;
+}
+.hero-float.hf-3 {
+  bottom: 14%;
+  left: 2%;
+  width: clamp(56px, 6.8vw, 104px);
+  --r: 6deg;
+  animation-delay: -2s;
+}
+.hero-float.hf-4 {
+  bottom: 4%;
+  right: 24%;
+  width: clamp(34px, 3.6vw, 52px);
+  --r: -8deg;
+  animation-delay: -4.5s;
+}
+
+/* Sticker: amarillo con anillo punteado, más de alebrije */
+.hero-sticker {
+  background: var(--a-yellow);
+  color: var(--ink);
+  box-shadow:
+    0 0 0 4px var(--a-night),
+    0 0 0 8px var(--a-turquoise);
+  outline: 2px dashed var(--a-night);
+  outline-offset: -9px;
+}
+.hero-sticker .icon {
+  color: var(--a-magenta);
+}
+
+/* Tira inferior del hero */
+.hero-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  --p-a: var(--a-magenta);
+  --p-b: var(--a-yellow);
+}
+.hero-bottom {
+  border-top-color: var(--a-night);
+}
+.hero-bottom a {
+  color: var(--a-violet);
+}
+
+/* ---------- NAVBAR ---------- */
+.site-header {
+  border-bottom: 0;
+  box-shadow: 0 6px 18px #1b0f3a14;
+}
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 10px;
+  pointer-events: none;
+  background:
+    conic-gradient(from -45deg at 50% 100%, var(--a-magenta) 90deg, transparent 0) 0 0 / 20px 10px,
+    var(--a-yellow);
+}
+.brand-lockup img {
+  transition: transform var(--transition);
+}
+.brand-lockup:hover img,
+.brand-lockup:focus-visible img {
+  transform: rotate(-10deg) scale(1.08);
+}
+.desktop-nav a {
+  transition: color var(--transition);
+}
+.desktop-nav a:hover,
+.desktop-nav a:focus-visible {
+  color: var(--a-violet);
+}
+.desktop-nav a::after {
+  height: 4px;
+  background-color: var(--a-orange);
+}
+.desktop-nav a:nth-child(4n + 2)::after {
+  background-color: var(--a-magenta);
+}
+.desktop-nav a:nth-child(4n + 3)::after {
+  background-color: var(--a-turquoise);
+}
+.desktop-nav a:nth-child(4n + 4)::after {
+  background-color: var(--a-lime);
+}
+.nav-order {
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
+}
+.nav-order:hover,
+.nav-order:focus-visible {
+  background: var(--a-violet);
+  transform: rotate(-2deg);
+}
+.menu-toggle {
+  border-color: var(--a-night);
+}
+.mobile-menu {
+  border-bottom: 0;
+}
+.mobile-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--a-magenta) 0 16px,
+    var(--a-yellow) 16px 32px,
+    var(--a-turquoise) 32px 48px,
+    var(--a-lime) 48px 64px
+  );
+}
+.mobile-menu a:hover {
+  color: var(--a-violet);
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle, #ffffff12 1.6px, transparent 2px) 0 0 / 24px 24px,
+    var(--a-night);
+  color: var(--paper);
+}
+.footer-strip {
+  --p-a: var(--a-magenta);
+  --p-b: var(--a-turquoise);
+  position: relative;
+  z-index: 1;
+}
+.footer-mandala {
+  position: absolute;
+  z-index: 0;
+  right: -170px;
+  top: -150px;
+  width: 560px;
+  height: 560px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.footer-mandala svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.footer-top,
+.footer-main,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+.footer-top h2 {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  font-size: clamp(48px, 6.4vw, 96px);
+  line-height: 1;
+  text-shadow: 5px 5px 0 var(--a-magenta);
+}
+.footer-top .small-label {
+  color: var(--a-yellow);
+}
+.footer-top .button-lime {
+  background: var(--a-yellow);
+  color: var(--ink);
+}
+.footer-top .button-lime:hover {
+  background: var(--a-lime);
+}
+.footer-brand {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  font-size: 40px;
+  color: var(--a-yellow);
+}
+.footer-main a:hover {
+  color: var(--a-lime);
+}
+.footer-main nav a {
+  transition: color var(--transition);
+}
+.footer-main,
+.footer-bottom {
+  border-top-color: #ffffff33;
+}
+
+@media (max-width: 700px) {
+  .footer-mandala {
+    width: 340px;
+    height: 340px;
+    right: -130px;
+    top: -110px;
+  }
+  .hero-float.hf-3 {
+    bottom: 22%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orbit::before,
+  .hero-mandala,
+  .hero-float,
+  .hero-image-wrap {
+    animation: none !important;
+  }
+  .brand-lockup img,
+  .nav-order {
+    transition: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-sticker {
+    font-size: 11px;
+    line-height: 1.15;
+  }
+}

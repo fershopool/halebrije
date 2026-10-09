@@ -2,10 +2,12 @@ import { sitePath } from '../utilities/paths';
 import { Icon } from '../components/Icon';
 import { content } from '../data/content';
 import { location } from '../data/locations';
+import { Mandala, Flower, Feather, Eye, PapelPicado, PatternStrip } from '../components/Ornaments';
 
 export function Hero() {
   return (
     <section className="hero section-shell" id="inicio" aria-labelledby="hero-title">
+      <PapelPicado count={22} />
       <div className="hero-copy">
         <p className="hero-kicker">
           <span className="tiny-spark">✳</span>
@@ -55,7 +57,12 @@ export function Hero() {
         </a>
       </div>
       <div className="hero-art">
-        <div className="hero-orbit" aria-hidden="true" />
+        <div className="hero-orbit" aria-hidden="true">
+          <span className="hero-ring ring-1" />
+          <span className="hero-ring ring-2" />
+          <span className="hero-ring ring-3" />
+          <Mandala className="hero-mandala spin-rev" />
+        </div>
         <div className="hero-image-wrap">
           <img
             className="hero-image"
@@ -95,6 +102,12 @@ export function Hero() {
             strokeLinecap="round"
           />
         </svg>
+        <div className="hero-deco" aria-hidden="true">
+          <Flower className="hero-float hf-1" />
+          <Feather className="hero-float hf-2" />
+          <Eye className="hero-float hf-3" />
+          <Flower className="hero-float hf-4" />
+        </div>
         <span className="concept-caption">{content.hero.caption}</span>
       </div>
       <div className="hero-bottom">
@@ -104,6 +117,7 @@ export function Hero() {
           <Icon />
         </a>
       </div>
+      <PatternStrip kind="zigzag" className="hero-strip" />
     </section>
   );
 }

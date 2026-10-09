@@ -18,10 +18,12 @@ import { LocationSection } from './sections/LocationSection';
 import { EventsSection } from './sections/EventsSection';
 import { brand, navigation } from './config/brand';
 import { pages } from './data/pages';
+import { useReveal } from './utilities/reveal';
 
 export function App({ path = '/' }: { path?: string }) {
   const pagePath = path === '/' ? path : `${path.replace(/\/$/, '')}/`;
   const page = pages.find((page) => page.path === pagePath);
+  useReveal();
   const orderDialog = useRef<HTMLDialogElement>(null);
   function order() {
     const number = brand.whatsappNumber.replace(/\D/g, '');

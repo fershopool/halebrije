@@ -1,0 +1,428 @@
+/* flavors: ribbon, tarjetas de sabor y quiz con lenguaje alebrije. Cargado al final: gana sobre sections.css e interactions.css. */
+
+/* ---------- Ribbon: cinta zigzag con marquee infinito ---------- */
+.flavor-ribbon {
+  --p-a: var(--a-magenta);
+  --p-b: var(--a-yellow);
+  --p-size: 30px;
+  position: relative;
+  margin-top: 12px;
+  padding-block: 14px;
+  background:
+    conic-gradient(from -45deg at 50% 100%, var(--p-a) 90deg, transparent 0) 0 0 / var(--p-size)
+      calc(var(--p-size) / 2),
+    var(--p-b);
+  border-block: 4px solid var(--a-night);
+}
+.flavor-ribbon > .flavor-ribbon__track {
+  display: flex;
+  width: max-content;
+  min-width: 0;
+  gap: 0;
+  padding: 0;
+  justify-content: flex-start;
+  animation: marquee 32s linear infinite;
+}
+.flavor-ribbon__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 18px;
+  padding-inline: 9px; /* gap entre grupos = 18px, así el bucle es continuo */
+}
+.flavor-ribbon .flavor-ribbon__item {
+  font-family: var(--font-fun);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  white-space: nowrap;
+  color: var(--a-cream);
+  background: var(--a-night);
+  border: 2px solid var(--a-cream);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--a-magenta);
+  padding: 10px 18px 11px;
+}
+.flavor-ribbon .flavor-ribbon__item:nth-child(4n + 3) {
+  background: var(--a-violet);
+  box-shadow: 4px 4px 0 var(--a-turquoise);
+  rotate: 2deg;
+}
+.flavor-ribbon .flavor-ribbon__item:nth-child(4n + 1) {
+  rotate: -2deg;
+}
+.flavor-ribbon .flavor-ribbon__item:nth-child(even) {
+  font-family: var(--font-body);
+  font-size: 30px;
+  color: var(--a-night);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 4px;
+}
+
+/* ---------- Tarjetas de sabor: sticker con sombra de color ---------- */
+.flavor-grid {
+  gap: 40px 30px;
+}
+.flavor-card {
+  --card: var(--pistachio);
+  --shadow: var(--a-magenta);
+  --pat: radial-gradient(circle, var(--a-magenta) 22%, transparent 26%) 0 0 / 22px 22px;
+  position: relative;
+  isolation: isolate;
+  background: var(--card);
+  border: 3px solid var(--a-night);
+  border-radius: 26px;
+  box-shadow: 7px 7px 0 var(--shadow);
+  overflow: hidden;
+  transition:
+    translate var(--transition),
+    rotate var(--transition),
+    box-shadow var(--transition);
+}
+.flavor-card--pistachio {
+  --card: var(--pistachio);
+  --shadow: var(--a-magenta);
+  --pat: radial-gradient(circle, var(--a-magenta) 22%, transparent 26%) 0 0 / 22px 22px;
+}
+.flavor-card--mango {
+  --card: var(--mango);
+  --shadow: var(--a-violet);
+  --pat: repeating-linear-gradient(45deg, var(--a-yellow) 0 10px, transparent 10px 20px);
+}
+.flavor-card--chocolate {
+  --card: var(--chocolate);
+  --shadow: var(--a-turquoise);
+  --pat: conic-gradient(
+      from 0deg at 50% 50%,
+      var(--a-turquoise) 25%,
+      transparent 0 50%,
+      var(--a-turquoise) 0 75%,
+      transparent 0
+    )
+    0 0 / 30px 30px;
+}
+.flavor-card--berry {
+  --card: var(--berry);
+  --shadow: var(--a-cobalt);
+  --pat: repeating-conic-gradient(var(--a-cobalt) 0 8deg, transparent 0 16deg);
+}
+/* Patrón de hover: cambia según el sabor, solo cubre la zona de la imagen */
+.flavor-card::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 58%;
+  background: var(--pat);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  z-index: 0;
+}
+.flavor-card:hover,
+.flavor-card:focus-within {
+  translate: 0 -6px;
+  rotate: -1.5deg;
+  box-shadow: 11px 11px 0 var(--shadow);
+}
+.flavor-card:hover::after,
+.flavor-card:focus-within::after {
+  opacity: 0.32;
+}
+.flavor-card__mandala {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 34%;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(2px 3px 0 rgba(27, 15, 58, 0.35));
+}
+.flavor-card > img {
+  position: relative;
+  z-index: 1;
+}
+.flavor-card h3 {
+  font-family: var(--font-fun);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.flavor-card .flavor-card__personality {
+  font-weight: 600;
+  color: var(--ink);
+}
+.flavor-tags span {
+  background: var(--paper);
+  border: 2px solid var(--a-night);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-weight: 700;
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--a-night);
+}
+.flavor-card .demo-badge {
+  top: 14px;
+  left: 14px;
+  rotate: -6deg;
+  background: var(--a-yellow);
+  border: 2px solid var(--a-night);
+  color: var(--a-night);
+  font-weight: 700;
+  z-index: 2;
+}
+.flavor-card .text-button {
+  color: var(--ink);
+}
+
+/* ---------- Quiz: fondo vivo, botones sticker, resultado con ornamentos ---------- */
+.quiz-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--lime);
+  border: 4px solid var(--a-night);
+  box-shadow: 10px 10px 0 var(--a-magenta);
+}
+.quiz-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 100%,
+    rgb(255 199 0 / 0.32) 0 9deg,
+    transparent 0 18deg
+  );
+  pointer-events: none;
+}
+.quiz-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 22px;
+  border-block: 0;
+  border-bottom: 3px solid var(--a-night);
+}
+.quiz-section > .eyebrow {
+  color: var(--a-night);
+}
+.quiz-section > h2 {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 3px 3px 0 var(--a-yellow);
+}
+.quiz-section > .section-copy {
+  color: var(--a-night);
+}
+.quiz-options {
+  gap: 16px;
+}
+.quiz-option {
+  position: relative;
+  overflow: visible;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--a-night);
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 var(--a-orange);
+  transition:
+    translate var(--transition),
+    rotate var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+.quiz-option > .icon {
+  color: var(--a-violet);
+}
+.quiz-option > small {
+  color: var(--muted);
+}
+.quiz-option__flower {
+  position: absolute;
+  top: -18px;
+  right: -16px;
+  width: 52px;
+  opacity: 0.9;
+  pointer-events: none;
+  transition: transform 400ms var(--ease);
+}
+.quiz-option:hover {
+  background: var(--white);
+  translate: 0 -3px;
+  rotate: -1deg;
+  box-shadow: 7px 7px 0 var(--a-orange);
+}
+.quiz-option:hover .quiz-option__flower {
+  transform: rotate(45deg);
+}
+.quiz-option[aria-pressed='true'] {
+  background: var(--a-night);
+  color: var(--a-cream);
+  border-color: var(--a-night);
+  box-shadow: 4px 4px 0 var(--a-magenta);
+  rotate: 1deg;
+}
+.quiz-option[aria-pressed='true'] > .icon {
+  color: var(--a-yellow);
+}
+.quiz-option[aria-pressed='true'] > small {
+  color: var(--a-cream);
+}
+.quiz-result {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 58px 26px 26px;
+  background: var(--paper);
+  border: 3px solid var(--a-night);
+  border-radius: 24px;
+  box-shadow: 6px 6px 0 var(--a-turquoise);
+}
+.quiz-result > .papel-picado {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  border-top: 0;
+  padding-inline: 10px;
+}
+.quiz-result__mandala {
+  position: absolute;
+  top: -70px;
+  right: -60px;
+  width: 230px;
+  opacity: 0.22;
+  z-index: -1;
+  pointer-events: none;
+}
+.quiz-result__confetti {
+  position: absolute;
+  width: 60px;
+  z-index: -1;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.quiz-result__confetti--a {
+  left: -18px;
+  bottom: -18px;
+  rotate: -20deg;
+}
+.quiz-result__confetti--b {
+  right: 14px;
+  bottom: 10px;
+  width: 46px;
+}
+.quiz-result > img {
+  border: 3px solid var(--a-night);
+  border-radius: 50%;
+  background: var(--white);
+  mix-blend-mode: normal;
+  padding: 8px;
+}
+.quiz-result h3 {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+/* ---------- Foco visible ---------- */
+.flavor-card .text-button:focus-visible,
+.quiz-option:focus-visible,
+.filter-button:focus-visible,
+.quiz-result__actions > .button:focus-visible,
+.quiz-result .text-button:focus-visible {
+  outline: 3px solid var(--a-cobalt);
+  outline-offset: 3px;
+}
+
+/* ---------- Responsive: hasta 360px ---------- */
+@media (max-width: 560px) {
+  .flavor-ribbon {
+    padding-block: 10px;
+  }
+  .flavor-ribbon__group {
+    gap: 12px;
+    padding-inline: 6px;
+  }
+  .flavor-ribbon .flavor-ribbon__item {
+    font-size: 19px;
+    padding: 7px 13px 8px;
+  }
+  .flavor-ribbon .flavor-ribbon__item:nth-child(even) {
+    font-size: 22px;
+  }
+  .flavor-card h3 {
+    font-size: 30px;
+  }
+  .flavor-card__mandala {
+    width: 30%;
+  }
+  .quiz-section {
+    padding: 34px 18px 28px;
+    box-shadow: 6px 6px 0 var(--a-magenta);
+  }
+  .quiz-options {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .quiz-option {
+    grid-template-columns: 30px 1fr;
+    padding: 14px;
+  }
+  .quiz-option > .icon {
+    width: 28px;
+    height: 28px;
+  }
+  .quiz-result {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding: 56px 16px 22px;
+  }
+  .quiz-result > img {
+    width: 140px;
+    height: 140px;
+  }
+  .quiz-result__actions {
+    justify-content: center;
+  }
+  .quiz-result__mandala {
+    width: 180px;
+    top: -60px;
+    right: -50px;
+  }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .flavor-ribbon > .flavor-ribbon__track {
+    animation: none;
+  }
+  .flavor-card,
+  .flavor-card:hover,
+  .flavor-card:focus-within,
+  .quiz-option,
+  .quiz-option:hover,
+  .quiz-option[aria-pressed='true'] {
+    translate: none;
+    rotate: none;
+    transition: none;
+  }
+  .flavor-card::after,
+  .quiz-option__flower,
+  .quiz-option:hover .quiz-option__flower {
+    transition: none;
+    transform: none;
+  }
+}

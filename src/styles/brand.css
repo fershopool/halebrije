@@ -1,0 +1,545 @@
+/* brand: estilos propios de esta zona; cargado después de alebrije.css */
+
+/* ---------- Temporada: noche explosiva ---------- */
+.seasonal-section {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  margin-block: 40px;
+  padding: clamp(28px, 5vw, 60px) clamp(18px, 4vw, 52px);
+  border: 4px solid var(--a-night);
+  border-radius: 32px;
+  color: var(--a-cream);
+  background:
+    radial-gradient(ellipse at 12% 18%, rgba(230, 0, 126, 0.38), transparent 55%),
+    radial-gradient(ellipse at 88% 82%, rgba(0, 179, 176, 0.3), transparent 55%), var(--a-night);
+  box-shadow: 12px 12px 0 var(--a-magenta);
+}
+.seasonal-copy {
+  position: relative;
+  z-index: 1;
+  color: var(--a-cream);
+}
+.seasonal-copy small {
+  color: rgba(255, 246, 224, 0.86);
+}
+.season-title {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 8vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  background: linear-gradient(
+    90deg,
+    var(--a-yellow),
+    var(--a-orange),
+    var(--a-magenta),
+    var(--a-turquoise),
+    var(--a-lime)
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.season-star {
+  position: absolute;
+  z-index: 2;
+  line-height: 1;
+  pointer-events: none;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--a-yellow);
+  text-shadow: 3px 3px 0 var(--a-magenta);
+}
+.season-star.s1 {
+  top: 4%;
+  right: 6%;
+}
+.season-star.s2 {
+  top: 46%;
+  left: 2%;
+  color: var(--a-lime);
+  text-shadow: 3px 3px 0 var(--a-violet);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+.season-star.s3 {
+  bottom: 6%;
+  right: 44%;
+  color: var(--a-turquoise);
+  text-shadow: 3px 3px 0 var(--a-night);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.seasonal-art {
+  position: relative;
+  isolation: isolate;
+  margin: 24px auto 0;
+  max-width: 420px;
+  width: 100%;
+  padding: 0;
+}
+.season-mandala {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 124%;
+  height: auto;
+  translate: -50% -50%;
+  opacity: 0.85;
+}
+.season-mandala-2 {
+  width: 150%;
+  opacity: 0.35;
+}
+.season-frame {
+  --p-a: var(--a-yellow);
+  --p-b: var(--a-magenta);
+  --p-size: 34px;
+  position: relative;
+  z-index: 1;
+  padding: 18px;
+  border: 6px solid var(--a-night);
+  border-radius: 28px;
+  box-shadow: 10px 10px 0 var(--a-turquoise);
+}
+.season-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 5px solid var(--a-night);
+  border-radius: 16px;
+  background: var(--a-cream);
+}
+.season-feather {
+  position: absolute;
+  z-index: 2;
+  width: clamp(64px, 18vw, 96px);
+  height: auto;
+  animation: floaty 7s ease-in-out infinite;
+}
+.season-feather-1 {
+  top: -26px;
+  left: -30px;
+  --r: -18deg;
+}
+.season-feather-2 {
+  bottom: -22px;
+  right: -28px;
+  --r: 160deg;
+  animation-delay: -3s;
+}
+.season-eye {
+  position: absolute;
+  z-index: 2;
+  top: 38%;
+  right: -22px;
+  width: clamp(52px, 14vw, 72px);
+  height: auto;
+  animation: wiggle 2.4s ease-in-out infinite;
+}
+.seasonal-art figcaption {
+  position: relative;
+  z-index: 2;
+  margin-top: 22px;
+  color: var(--a-cream);
+  font-weight: 700;
+  text-align: center;
+}
+.seasonal-art figcaption .icon {
+  color: var(--a-yellow);
+}
+.seasonal-burst {
+  z-index: 2;
+  color: var(--a-yellow);
+  text-shadow: 3px 3px 0 var(--a-magenta);
+}
+
+/* ---------- Craft: escalones coloridos ---------- */
+.craft-photo {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  padding: 0;
+}
+.craft-flower {
+  position: absolute;
+  z-index: 2;
+  width: clamp(72px, 22vw, 110px);
+  height: auto;
+  animation: spin 50s linear infinite;
+}
+.craft-flower-1 {
+  top: -34px;
+  left: -30px;
+}
+.craft-flower-2 {
+  bottom: -30px;
+  right: -26px;
+  animation-direction: reverse;
+}
+.craft-frame {
+  position: relative;
+  z-index: 1;
+  padding: 14px;
+  border: 6px solid var(--a-night);
+  border-radius: 999px 999px 26px 26px;
+  background: linear-gradient(180deg, var(--a-turquoise), var(--a-lime));
+  box-shadow: 10px 10px 0 var(--a-magenta);
+}
+.craft-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 5px solid var(--a-night);
+  border-radius: 999px 999px 18px 18px;
+}
+.craft-photo figcaption {
+  margin-top: 22px;
+  font-weight: 700;
+}
+.craft-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.craft-connector {
+  --p-a: var(--a-magenta);
+  --p-b: var(--a-yellow);
+  --p-size: 16px;
+  height: 16px;
+  width: 80%;
+  margin: 10px auto;
+  border: 3px solid var(--a-night);
+  border-radius: 99px;
+}
+.craft-step {
+  --c: var(--a-magenta);
+  --ink: var(--a-cream);
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  background: var(--a-cream);
+  border: 4px solid var(--a-night);
+  border-radius: 24px;
+  box-shadow: 9px 9px 0 var(--c);
+  rotate: -1deg;
+  transition: rotate 0.3s ease;
+}
+.craft-step.tone-1 {
+  --c: var(--a-orange);
+  --ink: var(--a-night);
+  rotate: 0.8deg;
+}
+.craft-step.tone-2 {
+  --c: var(--a-turquoise);
+  --ink: var(--a-night);
+  rotate: -0.6deg;
+}
+.craft-step.tone-3 {
+  --c: var(--a-violet);
+  --ink: var(--a-cream);
+  rotate: 1deg;
+}
+.craft-step > span {
+  display: grid;
+  place-items: center;
+  min-width: 1.9em;
+  height: 1.9em;
+  padding-inline: 0.2em;
+  font-family: var(--font-fun);
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  line-height: 1;
+  color: var(--ink);
+  background: var(--c);
+  border: 4px solid var(--a-night);
+  border-radius: 18px;
+}
+.craft-step h3 {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 3.4vw, 1.4rem);
+  line-height: 1.15;
+  color: var(--a-night);
+}
+.craft-step p {
+  color: #3a2a5c;
+}
+.craft-deco {
+  width: clamp(48px, 12vw, 68px);
+  height: auto;
+  flex-shrink: 0;
+  animation: wiggle 2.4s ease-in-out infinite;
+}
+.craft-steps > .fine-print {
+  margin-top: 18px;
+}
+
+/* ---------- Story: papel picado, mandala y capítulos de colores ---------- */
+.story-section {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+.story-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 32px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(91, 42, 134, 0.16) 2px, transparent 2.5px) 0 0 / 26px
+    26px;
+}
+.story-panel {
+  position: relative;
+  overflow: hidden;
+  padding: 84px clamp(18px, 4vw, 34px) clamp(22px, 4vw, 34px);
+  background: var(--a-cream);
+  border: 5px solid var(--a-night);
+  border-radius: 28px;
+  box-shadow: 10px 10px 0 var(--a-turquoise);
+}
+.story-papel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.story-papel .papel-picado {
+  border-top: 0;
+  padding-inline: 0;
+}
+.story-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 210px;
+  margin-bottom: 18px;
+}
+.story-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(250px, 80%);
+  height: auto;
+  translate: -50% -50%;
+  z-index: 0;
+  opacity: 0.9;
+}
+.story-mark img {
+  position: relative;
+  z-index: 1;
+  width: 130px;
+  height: auto;
+  filter: drop-shadow(4px 4px 0 var(--a-night));
+}
+.story-mark > span {
+  position: relative;
+  z-index: 1;
+}
+.story-chapters details {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 4px solid var(--a-night);
+  border-radius: 18px;
+  background: var(--t);
+  color: var(--tx);
+  box-shadow: 6px 6px 0 var(--a-night);
+}
+.story-chapters details::before {
+  content: '';
+  display: block;
+  height: 12px;
+  border-bottom: 3px solid var(--a-night);
+  background: repeating-linear-gradient(45deg, var(--tp) 0 8px, var(--t) 0 16px);
+}
+.story-chapters details:nth-child(4n + 1) {
+  --t: var(--a-yellow);
+  --tp: var(--a-magenta);
+  --tx: var(--a-night);
+}
+.story-chapters details:nth-child(4n + 2) {
+  --t: var(--a-turquoise);
+  --tp: var(--a-yellow);
+  --tx: var(--a-night);
+}
+.story-chapters details:nth-child(4n + 3) {
+  --t: var(--a-violet);
+  --tp: var(--a-orange);
+  --tx: var(--a-cream);
+}
+.story-chapters details:nth-child(4n + 4) {
+  --t: var(--a-orange);
+  --tp: var(--a-lime);
+  --tx: var(--a-night);
+}
+.story-chapters summary {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  color: inherit;
+}
+.story-chapters details p {
+  color: inherit;
+}
+.story-chapters summary > span {
+  color: inherit;
+  border-color: var(--a-night);
+}
+.story-panel .fine-print {
+  color: #3a2a5c;
+}
+
+/* ---------- Social: collage con marcos de colores ---------- */
+.social-grid {
+  gap: clamp(22px, 4vw, 34px);
+}
+.social-post {
+  position: relative;
+  --t: var(--a-magenta);
+  border: 6px solid var(--t);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--a-night);
+  box-shadow: 8px 8px 0 var(--a-night);
+  rotate: -2.5deg;
+  transition:
+    rotate 0.35s ease,
+    scale 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.social-post:nth-child(even) {
+  rotate: 2deg;
+}
+.social-post:nth-child(3n) {
+  rotate: -0.8deg;
+}
+.social-post.tone-0 {
+  --t: var(--a-magenta);
+}
+.social-post.tone-1 {
+  --t: var(--a-yellow);
+}
+.social-post.tone-2 {
+  --t: var(--a-turquoise);
+}
+.social-post.tone-3 {
+  --t: var(--a-orange);
+}
+.social-post.tone-4 {
+  --t: var(--a-lime);
+}
+.social-post.tone-5 {
+  --t: var(--a-violet);
+}
+.social-post:hover,
+.social-post:focus-visible {
+  rotate: 0deg;
+  scale: 1.06;
+  z-index: 2;
+  box-shadow: 12px 12px 0 var(--a-night);
+}
+.social-post:focus-visible {
+  outline: 4px solid var(--a-cobalt);
+  outline-offset: 6px;
+}
+.social-separator {
+  --p-a: var(--a-magenta);
+  --p-b: var(--a-yellow);
+  margin-block: clamp(28px, 6vw, 44px);
+  height: 26px;
+  border-block: 0;
+  border-radius: 14px;
+  --p-size: 26px;
+}
+.social-bottom {
+  margin-top: 8px;
+}
+
+/* ---------- Entrada escalonada: sin revelado de transform en tarjetas rotadas ---------- */
+.reveal-on .social-post[data-reveal] {
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease),
+    rotate 0.35s ease,
+    scale 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* ---------- Pantallas pequeñas (hasta 360px) ---------- */
+@media (max-width: 560px) {
+  .seasonal-section {
+    border-radius: 24px;
+    box-shadow: 7px 7px 0 var(--a-magenta);
+  }
+  .season-feather-2,
+  .season-star.s3 {
+    display: none;
+  }
+  .season-feather-1 {
+    left: -10px;
+  }
+  .season-eye {
+    right: -8px;
+  }
+  .craft-step {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+  .craft-deco {
+    display: none;
+  }
+  .craft-flower-1 {
+    left: -12px;
+  }
+  .craft-flower-2 {
+    right: -10px;
+  }
+  .story-panel {
+    padding-top: 74px;
+  }
+  .social-post:hover,
+  .social-post:focus-visible {
+    scale: 1.03;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .season-feather,
+  .season-eye,
+  .craft-flower,
+  .craft-deco,
+  .season-star,
+  .season-mandala,
+  .story-mandala {
+    animation: none;
+  }
+  .craft-step,
+  .social-post {
+    transition: none;
+  }
+  .social-post:hover,
+  .social-post:focus-visible {
+    scale: 1;
+  }
+}
+
+/* Ajustes tras revisión visual */
+.story-mark > span {
+  display: none;
+}
+.story-chapters summary {
+  padding: 12px 18px;
+}
+.story-chapters details p {
+  padding: 0 18px 16px;
+}

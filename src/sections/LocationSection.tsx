@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { location } from '../data/locations';
 import { brand } from '../config/brand';
+import { Flower, Mandala } from '../components/Ornaments';
 export function LocationSection() {
   const [showMap, setShowMap] = useState(false);
   return (
@@ -10,7 +11,7 @@ export function LocationSection() {
       id="visitanos"
       aria-labelledby="location-title"
     >
-      <div className="location-info">
+      <div className="location-info" data-reveal="left">
         <span className="small-label">El antojo ya tiene destino</span>
         <h2 id="location-title">
           Visita
@@ -41,45 +42,49 @@ export function LocationSection() {
           </a>
         </div>
       </div>
-      <div className="location-map">
-        {showMap ? (
-          <iframe
-            src={location.mapEmbed}
-            title="Mapa de Town Center El Rosario"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        ) : (
-          <div className="map-placeholder">
-            <div className="map-streets" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
+      <div className="location-frame pat-dots" data-reveal="right">
+        <Flower className="orn orn-tl" />
+        <Mandala className="orn orn-br spin-slow" layers={3} />
+        <div className="location-map">
+          {showMap ? (
+            <iframe
+              src={location.mapEmbed}
+              title="Mapa de Town Center El Rosario"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          ) : (
+            <div className="map-placeholder">
+              <div className="map-streets" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="map-pin">
+                <Icon name="pin" />
+                <span>
+                  Tu próximo
+                  <br />
+                  Halebrije
+                </span>
+              </div>
+              <div className="map-caption">
+                <p>
+                  Town Center
+                  <br />
+                  <strong>El Rosario</strong>
+                </p>
+                <button className="button button-light" onClick={() => setShowMap(true)}>
+                  Cargar mapa
+                  <Icon name="diagonal" />
+                </button>
+                <small>Al cargar, se conecta con Google Maps.</small>
+              </div>
             </div>
-            <div className="map-pin">
-              <Icon name="pin" />
-              <span>
-                Tu próximo
-                <br />
-                Halebrije
-              </span>
-            </div>
-            <div className="map-caption">
-              <p>
-                Town Center
-                <br />
-                <strong>El Rosario</strong>
-              </p>
-              <button className="button button-light" onClick={() => setShowMap(true)}>
-                Cargar mapa
-                <Icon name="diagonal" />
-              </button>
-              <small>Al cargar, se conecta con Google Maps.</small>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );

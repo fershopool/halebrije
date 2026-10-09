@@ -1,0 +1,204 @@
+/* Base visual alebrije: paleta, patrones, animaciones, reveal. Se carga DESPUÉS de las hojas existentes. */
+:root {
+  --a-magenta: #e6007e;
+  --a-orange: #ff6a13;
+  --a-yellow: #ffc700;
+  --a-turquoise: #00b3b0;
+  --a-violet: #5b2a86;
+  --a-lime: #8fd32a;
+  --a-cobalt: #2347d8;
+  --a-night: #1b0f3a;
+  --a-cream: #fff6e0;
+  --font-fun: 'Bagel Fat One', 'Barlow Condensed', sans-serif;
+  --p-a: var(--a-magenta);
+  --p-b: var(--a-yellow);
+  --p-size: 28px;
+}
+.font-fun {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.rainbow-text {
+  background: linear-gradient(
+    90deg,
+    var(--a-magenta),
+    var(--a-orange),
+    var(--a-yellow),
+    var(--a-lime),
+    var(--a-turquoise),
+    var(--a-cobalt)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ornament {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Patrones con variables: .pat-* + --p-a / --p-b / --p-size */
+.pat-dots {
+  background:
+    radial-gradient(circle at 50% 50%, var(--p-a) 22%, transparent 24%) 0 0 / var(--p-size)
+      var(--p-size),
+    var(--p-b);
+}
+.pat-zigzag {
+  background:
+    conic-gradient(from -45deg at 50% 100%, var(--p-a) 90deg, transparent 0) 0 0 / var(--p-size)
+      calc(var(--p-size) / 2),
+    var(--p-b);
+}
+.pat-scales {
+  background: radial-gradient(
+      circle at 50% 100%,
+      var(--p-b) 0 38%,
+      var(--p-a) 40% 58%,
+      var(--p-b) 60% 78%,
+      var(--p-a) 80%
+    )
+    0 0 / var(--p-size) calc(var(--p-size) / 2);
+}
+.pat-diamonds {
+  background: conic-gradient(
+      from 0deg at 50% 50%,
+      var(--p-a) 25%,
+      var(--p-b) 0 50%,
+      var(--p-a) 0 75%,
+      var(--p-b) 0
+    )
+    0 0 / var(--p-size) var(--p-size);
+  transform-origin: center;
+}
+.pat-rays {
+  background: repeating-conic-gradient(var(--p-a) 0 10deg, var(--p-b) 0 20deg);
+}
+.pat-stripes {
+  background: repeating-linear-gradient(45deg, var(--p-a) 0 14px, var(--p-b) 0 28px);
+}
+.pattern-strip {
+  height: 22px;
+  width: 100%;
+  border-block: 3px solid var(--a-night);
+  --p-size: 22px;
+}
+.pattern-strip.pat-scales {
+  height: 26px;
+}
+
+/* Papel picado */
+.papel-picado {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  padding-inline: 8px;
+  pointer-events: none;
+  border-top: 3px solid var(--a-night);
+}
+.papel-picado span {
+  flex: 1;
+  height: 46px;
+  max-width: 64px;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 82%, 70% 70%, 50% 100%, 30% 70%, 15% 82%, 0 70%);
+  transform-origin: top center;
+  animation: sway 3.2s ease-in-out infinite alternate;
+}
+
+/* Animaciones */
+@keyframes sway {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-14px) rotate(calc(var(--r, 0deg) + 4deg));
+  }
+}
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes hue {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin 40s linear infinite;
+}
+.spin-rev {
+  animation: spin 55s linear infinite reverse;
+}
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+.wiggle {
+  animation: wiggle 2.4s ease-in-out infinite;
+}
+
+/* Reveal: solo oculta si JS activó .reveal-on */
+.reveal-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+.reveal-on [data-reveal='left'] {
+  transform: translateX(-48px);
+}
+.reveal-on [data-reveal='right'] {
+  transform: translateX(48px);
+}
+.reveal-on [data-reveal='zoom'] {
+  transform: scale(0.82) rotate(-3deg);
+}
+.reveal-on [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow,
+  .spin-rev,
+  .floaty,
+  .wiggle,
+  .papel-picado span {
+    animation: none;
+  }
+}
+
+/* Encabezados de sección con la fuente alebrije */
+main h2 {
+  font-family: var(--font-fun);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.02;
+}

@@ -1,9 +1,12 @@
 import { EventForm } from '../components/EventForm';
 import { Icon } from '../components/Icon';
+import { Mandala, PapelPicado } from '../components/Ornaments';
 export function EventsSection() {
   return (
     <section className="events-section section-shell" id="eventos" aria-labelledby="events-title">
-      <div className="events-intro">
+      <PapelPicado count={20} />
+      <Mandala className="events-mandala spin-rev" layers={4} />
+      <div className="events-intro" data-reveal="left">
         <span className="small-label">Que el antojo sea parte del plan</span>
         <h2 id="events-title">
           Lleva Halebrije
@@ -32,7 +35,7 @@ export function EventsSection() {
           Halebrije.
         </p>
       </div>
-      <div className="events-form-wrap">
+      <div className="events-form-wrap" data-reveal="right">
         <h3>Tu evento empieza aquí.</h3>
         <p>Los campos con * son obligatorios.</p>
         <EventForm />

@@ -1,10 +1,18 @@
 import { sitePath } from '../utilities/paths';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { categories, flavors, type Category, type Flavor } from '../data/flavors';
 import { Icon } from './Icon';
 import { filterFlavors } from '../utilities/flavor-rules.mjs';
+import { Mandala } from './Ornaments';
+import { alebrijePalette } from '../config/palette';
 
 const demoNotice = 'Sabores e imágenes DEMO · menú real por confirmar.';
+
+// Rota la paleta alebrije según la posición de la tarjeta (determinista, SSR-safe).
+const cardColors = (index: number) => {
+  const shift = index % alebrijePalette.length;
+  return [...alebrijePalette.slice(shift), ...alebrijePalette.slice(0, shift)];
+};
 
 export function FlavorExplorer() {
   const [category, setCategory] = useState<Category>('Todos');
@@ -56,8 +64,14 @@ export function FlavorExplorer() {
         demo.
       </p>
       <div className="flavor-grid">
-        {visible.map((flavor) => (
-          <article key={flavor.id} className={`flavor-card flavor-card--${flavor.color}`}>
+        {visible.map((flavor, index) => (
+          <article
+            key={flavor.id}
+            className={`flavor-card flavor-card--${flavor.color}`}
+            style={{ '--d': `${index * 110}ms` } as CSSProperties}
+            data-reveal="up"
+          >
+            <Mandala className="flavor-card__mandala spin-slow" colors={cardColors(index)} />
             <img
               src={sitePath(flavor.image)}
               alt={`Imagen DEMO de ${flavor.name}`}

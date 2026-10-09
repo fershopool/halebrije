@@ -1,16 +1,24 @@
+import { Fragment, type CSSProperties } from 'react';
 import { sitePath } from '../utilities/paths';
 import { Icon } from '../components/Icon';
+import { Mandala, Flower, Feather, Eye, PapelPicado, PatternStrip } from '../components/Ornaments';
 import { brand } from '../config/brand';
 import { content } from '../data/content';
 import { socialPosts } from '../data/social';
 
+const craftDecor = [Flower, Feather, Eye, Mandala];
+
 export function FlavorRibbon() {
+  const items = content.seasonal.ribbon.map((item, index) => (
+    <span key={`${item}-${index}`} className="flavor-ribbon__item">
+      {item}
+    </span>
+  ));
   return (
     <div className="flavor-ribbon" aria-hidden="true">
-      <div>
-        {content.seasonal.ribbon.map((item, index) => (
-          <span key={`${item}-${index}`}>{item}</span>
-        ))}
+      <div className="flavor-ribbon__track">
+        <div className="flavor-ribbon__group">{items}</div>
+        <div className="flavor-ribbon__group">{items}</div>
       </div>
     </div>
   );
@@ -19,9 +27,18 @@ export function FlavorRibbon() {
 export function SeasonalFlavor() {
   return (
     <section className="seasonal-section section-shell" aria-labelledby="season-title">
-      <div className="seasonal-copy">
+      <span className="season-star s1 spin-slow" aria-hidden="true">
+        ✳
+      </span>
+      <span className="season-star s2 spin-rev" aria-hidden="true">
+        ✦
+      </span>
+      <span className="season-star s3 spin-slow" aria-hidden="true">
+        ✸
+      </span>
+      <div className="seasonal-copy" data-reveal="left">
         <span className="pill pill-light">{content.seasonal.label}</span>
-        <h2 id="season-title">
+        <h2 id="season-title" className="font-fun season-title rainbow-text">
           {content.seasonal.titleLines.map((line, index) => (
             <span key={line}>
               {index > 0 && (
@@ -67,14 +84,21 @@ export function SeasonalFlavor() {
           ))}
         </small>
       </div>
-      <figure className="seasonal-art">
-        <img
-          src={sitePath('/images/social-temporada.webp')}
-          width="360"
-          height="640"
-          alt={content.seasonal.imageAlt}
-          loading="lazy"
-        />
+      <figure className="seasonal-art" data-reveal="zoom">
+        <Mandala className="season-mandala spin-slow" />
+        <Mandala className="season-mandala season-mandala-2 spin-rev" />
+        <div className="season-frame pat-rays">
+          <img
+            src={sitePath('/images/social-temporada.webp')}
+            width="360"
+            height="640"
+            alt={content.seasonal.imageAlt}
+            loading="lazy"
+          />
+        </div>
+        <Feather className="season-feather season-feather-1" />
+        <Feather className="season-feather season-feather-2" />
+        <Eye className="season-eye" />
         <figcaption>
           {content.seasonal.caption} <Icon name="instagram" />
         </figcaption>
@@ -109,27 +133,41 @@ export function CraftSection() {
         <p>{content.craft.intro}</p>
       </div>
       <div className="craft-layout">
-        <figure className="craft-photo">
-          <img
-            src={sitePath('/images/hero-small.webp')}
-            width="540"
-            height="675"
-            loading="lazy"
-            alt={content.craft.imageAlt}
-          />
+        <figure className="craft-photo" data-reveal="left">
+          <Flower className="craft-flower craft-flower-1" />
+          <Flower className="craft-flower craft-flower-2" />
+          <div className="craft-frame">
+            <img
+              src={sitePath('/images/hero-small.webp')}
+              width="540"
+              height="675"
+              loading="lazy"
+              alt={content.craft.imageAlt}
+            />
+          </div>
           <figcaption>{content.craft.caption}</figcaption>
         </figure>
         <div className="craft-steps">
-          {content.craft.steps.map(([number, title, copy]) => (
-            <div className="craft-step" key={number}>
-              <span>{number}</span>
-              <div>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </div>
-              <Icon name="spark" />
-            </div>
-          ))}
+          {content.craft.steps.map(([number, title, copy], index) => {
+            const Deco = craftDecor[index % craftDecor.length];
+            return (
+              <Fragment key={number}>
+                {index > 0 && <PatternStrip kind="dots" className="craft-connector" />}
+                <div
+                  className={`craft-step tone-${index % 4}`}
+                  data-reveal="up"
+                  style={{ '--d': `${index * 120}ms` } as CSSProperties}
+                >
+                  <span>{number}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </div>
+                  <Deco className="craft-deco" />
+                </div>
+              </Fragment>
+            );
+          })}
           <p className="fine-print">{content.craft.notice}</p>
         </div>
       </div>
@@ -140,7 +178,7 @@ export function CraftSection() {
 export function StorySection() {
   return (
     <section className="story-section section-shell" aria-labelledby="story-title">
-      <div className="story-intro">
+      <div className="story-intro" data-reveal="left">
         <span className="small-label">{content.story.label}</span>
         <h2 id="story-title">
           {content.story.titleLines.map((line, index) => (
@@ -161,8 +199,12 @@ export function StorySection() {
           <Icon name="diagonal" />
         </a>
       </div>
-      <div className="story-panel">
+      <div className="story-panel" data-reveal="right">
+        <div className="story-papel" aria-hidden="true">
+          <PapelPicado count={14} />
+        </div>
         <div className="story-mark" aria-hidden="true">
+          <Mandala className="story-mandala spin-slow" />
           <img src={sitePath('/images/logo.webp')} width="150" height="150" alt="" />
           <span>
             HALE
@@ -202,14 +244,16 @@ export function SocialGrid() {
         </a>
       </div>
       <div className="social-grid">
-        {socialPosts.map((post) => (
+        {socialPosts.map((post, index) => (
           <a
-            className="social-post"
+            className={`social-post tone-${index % 6}`}
             key={sitePath(post.image)}
             href={post.href}
             target="_blank"
             rel="noreferrer"
             aria-label={`${post.title}. Ver publicación en Instagram (abre otra pestaña)`}
+            data-reveal="zoom"
+            style={{ '--d': `${(index % 6) * 90}ms` } as CSSProperties}
           >
             <img
               src={sitePath(post.image)}
@@ -225,7 +269,8 @@ export function SocialGrid() {
           </a>
         ))}
       </div>
-      <div className="social-bottom">
+      <PatternStrip kind="diamonds" className="social-separator" />
+      <div className="social-bottom" data-reveal="up">
         <p>{content.social.caption}</p>
         <a
           href={brand.instagram}
